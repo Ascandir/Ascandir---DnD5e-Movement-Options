@@ -1,0 +1,16 @@
+{
+  "AMO": {
+    "Settings": {
+      "FriendlyDifficult": {
+        "Name": "Befreundete Token = schwieriges Gelände?",
+        "Hint": "Legt fest, ob ein Feld, auf dem ein befreundeter Token steht (gleiche Gesinnung/Disposition), beim Durchqueren als schwieriges Gelände zählt (doppelte Bewegungskosten). Feindliche Token bleiben wie gewohnt schwieriges Gelände. Greift nur, wenn die dnd5e-Bewegungsautomatisierung aktiv ist.",
+        "Difficult": "Ja – befreundete Token sind schwieriges Gelände",
+        "Normal": "Nein – Bewegen durch befreundete Token kostet normal",
+        "System": "Wie im System (Regeln 2014: ja, Regeln 2024: nein)"
+      }
+    },
+    "Warnings": {
+      "WrongSystem": "Ascandir - DnD5e Movement Options funktioniert nur mit dem Spielsystem D&D 5e."
+    }
+  }
+}

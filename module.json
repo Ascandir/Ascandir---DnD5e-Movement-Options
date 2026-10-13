@@ -1,0 +1,45 @@
+{
+  "id": "ascandir-dnd5e-movement-options",
+  "title": "Ascandir - DnD5e Movement Options",
+  "description": "Bewegungsoptionen für D&D 5e: Der Spielleiter legt fest, ob das Bewegen durch Felder befreundeter Token als schwieriges Gelände zählt – Foundry berechnet die Bewegungskosten dann entsprechend.",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Ascandir"
+    }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.368"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "6.0.0",
+          "verified": "6.0.6"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "languages": [
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "url": "https://github.com/Ascandir/Ascandir---DnD5e-Movement-Options",
+  "manifest": "https://github.com/Ascandir/Ascandir---DnD5e-Movement-Options/releases/latest/download/module.json",
+  "download": "https://github.com/Ascandir/Ascandir---DnD5e-Movement-Options/releases/latest/download/ascandir-dnd5e-movement-options.zip"
+}

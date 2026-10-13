@@ -1,0 +1,16 @@
+{
+  "AMO": {
+    "Settings": {
+      "FriendlyDifficult": {
+        "Name": "Friendly tokens = difficult terrain?",
+        "Hint": "Decides whether a space occupied by a friendly token (same disposition) counts as difficult terrain when moving through it (double movement cost). Hostile tokens remain difficult terrain as usual. Only applies while dnd5e movement automation is enabled.",
+        "Difficult": "Yes – friendly tokens are difficult terrain",
+        "Normal": "No – moving through friendly tokens costs normal movement",
+        "System": "System default (2014 rules: yes, 2024 rules: no)"
+      }
+    },
+    "Warnings": {
+      "WrongSystem": "Ascandir - DnD5e Movement Options only works with the D&D 5e game system."
+    }
+  }
+}
