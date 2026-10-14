@@ -34,6 +34,25 @@ const HOSTILE_SIZES = {
 };
 const hostileSettingKey = size => `hostileDifficult.${size}`;
 
+/**
+ * Zwischengespeicherte Einstellungen. Der Gelände-Hook läuft beim Ziehen eines Tokens für jedes
+ * Rasterfeld der Strecke und bei jeder Mausbewegung – dort jedes Mal die Einstellungen zu lesen, ist unnötig teuer.
+ * Wird bei jeder Änderung einer betroffenen Einstellung verworfen.
+ */
+let cache = null;
+const resetCache = () => { cache = null; };
+function settings() {
+  if ( cache ) return cache;
+  const hostile = {};
+  for ( const size of Object.keys(HOSTILE_SIZES) ) hostile[size] = game.settings.get(MODULE_ID, hostileSettingKey(size));
+  cache = {
+    friendlyMode: game.settings.get(MODULE_ID, SETTING_FRIENDLY),
+    modernRules: game.settings.get("dnd5e", "rulesVersion") === "modern",
+    hostile
+  };
+  return cache;
+}
+
 /* -------------------------------------------- */
 /*  Einstellungen                               */
 /* -------------------------------------------- */
@@ -47,6 +66,7 @@ Hooks.once("init", () => {
     restricted: true,
     type: String,
     default: MODES.DIFFICULT,
+    onChange: resetCache,
     choices: {
       [MODES.DIFFICULT]: "AMO.Settings.FriendlyDifficult.Difficult",
       [MODES.NORMAL]: "AMO.Settings.FriendlyDifficult.Normal",
@@ -63,7 +83,8 @@ Hooks.once("init", () => {
       config: true,
       restricted: true,
       type: Boolean,
-      default: true
+      default: true,
+      onChange: resetCache
     });
   }
 });
@@ -74,6 +95,10 @@ Hooks.once("ready", () => {
     return;
   }
   Hooks.on("dnd5e.determineOccupiedGridSpaceDifficult", onDetermineDifficult);
+  // Die Regelversion von dnd5e kann ebenfalls umgestellt werden.
+  Hooks.on("updateSetting", setting => {
+    if ( (setting.key === "dnd5e.rulesVersion") || setting.key?.startsWith(`${MODULE_ID}.`) ) resetCache();
+  });
 });
 
 /* -------------------------------------------- */
@@ -89,11 +114,12 @@ Hooks.once("ready", () => {
  * @param {Set<Token>} found        Token, die das Feld schwierig machen. Wird verändert.
  */
 function onDetermineDifficult(gridSpace, token, { preview=false }={}, found) {
-  const friendlyMode = game.settings.get(MODULE_ID, SETTING_FRIENDLY);
-  const modernRules = game.settings.get("dnd5e", "rulesVersion") === "modern";
+  const { friendlyMode, modernRules, hostile } = settings();
 
   // Alle Token auf dem Feld prüfen – auch die, die das System bereits herausgefiltert hat.
-  const candidates = new Set([...getOccupyingTokens(gridSpace, token, { preview }), ...found]);
+  const candidates = getOccupyingTokens(gridSpace, token, { preview });
+  for ( const t of found ) candidates.add(t);
+  if ( !candidates.size ) return;
   for ( const t of candidates ) {
     if ( !t.actor?.system?.isCreature ) continue; // Nur Kreaturen sind schwieriges Gelände.
 
@@ -104,7 +130,7 @@ function onDetermineDifficult(gridSpace, token, { preview=false }={}, found) {
       // Nach den 2024-Regeln zählen winzige Kreaturen nie als schwieriges Gelände.
       else difficult = !(modernRules && (getSizeValue(t) === 0));
     }
-    else difficult = isHostileSizeDifficult(t);
+    else difficult = isHostileSizeDifficult(t, hostile);
 
     if ( difficult ) found.add(t);
     else found.delete(t);
@@ -115,12 +141,13 @@ function onDetermineDifficult(gridSpace, token, { preview=false }={}, found) {
  * Hat der SL für die Größe dieses (feindlichen) Tokens ein Häkchen gesetzt?
  * Unbekannte Größen (z. B. aus anderen Modulen) zählen als schwierig.
  * @param {Token} t
+ * @param {Record<string, boolean>} hostile  Häkchen je Größe (zwischengespeichert)
  * @returns {boolean}
  */
-function isHostileSizeDifficult(t) {
+function isHostileSizeDifficult(t, hostile) {
   const size = t.actor?.system?.traits?.size;
   if ( !(size in HOSTILE_SIZES) ) return true;
-  return game.settings.get(MODULE_ID, hostileSettingKey(size));
+  return hostile[size];
 }
 
 /**

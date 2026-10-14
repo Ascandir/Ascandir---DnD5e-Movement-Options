@@ -2,7 +2,7 @@
   "id": "ascandir-dnd5e-movement-options",
   "title": "Ascandir - DnD5e Movement Options",
   "description": "Bewegungsoptionen für D&D 5e: Der Spielleiter legt fest, ob befreundete Token und – je nach Größe – feindliche Token beim Durchqueren als schwieriges Gelände zählen. Foundry berechnet die Bewegungskosten dann entsprechend.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "authors": [
     {
       "name": "Ascandir"
