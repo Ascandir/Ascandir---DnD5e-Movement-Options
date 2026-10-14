@@ -7,6 +7,15 @@
         "Difficult": "Yes – friendly tokens are difficult terrain",
         "Normal": "No – moving through friendly tokens costs normal movement",
         "System": "System default (2014 rules: yes, 2024 rules: no)"
+      },
+      "HostileDifficult": {
+        "Hint": "Checked = hostile tokens of this size are difficult terrain when moving through them (double movement cost). Unchecked = normal cost. \"Hostile\" means any token with a different disposition than the moving token (neutral included). Tokens that block movement still block.",
+        "Tiny": "Hostile tokens difficult: Tiny",
+        "Small": "Hostile tokens difficult: Small",
+        "Medium": "Hostile tokens difficult: Medium",
+        "Large": "Hostile tokens difficult: Large",
+        "Huge": "Hostile tokens difficult: Huge",
+        "Gargantuan": "Hostile tokens difficult: Gargantuan"
       }
     },
     "Warnings": {

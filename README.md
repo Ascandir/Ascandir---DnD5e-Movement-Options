@@ -18,11 +18,23 @@ befreundeter Token steht, als **schwieriges Gelände** zählt:
 Foundry berechnet die Bewegung dann direkt so – im Bewegungs-Lineal beim Ziehen, bei Wegpunkten
 und in der Anzeige der verbrauchten Bewegung.
 
+### Feindliche Token als schwieriges Gelände – je nach Größe
+
+Für jede Kreaturengröße gibt es in den Moduleinstellungen ein eigenes Häkchen:
+Winzig, Klein, Mittelgroß, Groß, Riesig, Gigantisch.
+
+- **Häkchen gesetzt**: Feindliche Token dieser Größe sind schwieriges Gelände (doppelte Bewegung).
+- **Kein Häkchen**: Felder mit feindlichen Token dieser Größe kosten normal.
+
+Standardmäßig sind alle Häkchen gesetzt. „Feindlich“ heißt hier: andere Gesinnung als der bewegte
+Token (also auch neutrale Token). Token, die den Weg nach den dnd5e-Regeln blockieren, blockieren
+weiterhin – die Häkchen gelten für die Felder, durch die man hindurch darf.
+
 **Hinweise**
 
 - „Befreundet“ heißt wie bei dnd5e: gleiche Gesinnung (Disposition) des Tokens.
-- Feindliche Token bleiben wie gewohnt schwieriges Gelände bzw. blockieren.
-- Nach den Regeln 2024 zählen winzige (Tiny) Kreaturen nie als schwieriges Gelände.
+- Nach den Regeln 2024 zählen winzige (Tiny) befreundete Kreaturen nie als schwieriges Gelände.
+  Bei feindlichen Token entscheidet das Häkchen „Winzig“.
 - Steht ein Feld bereits in einer Region mit schwierigem Gelände, wird nicht doppelt gerechnet.
 - Funktioniert nur auf Szenen mit Raster und wenn in den dnd5e-Einstellungen die
   Bewegungsautomatisierung nicht auf „Keine“ steht.

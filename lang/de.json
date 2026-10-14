@@ -7,6 +7,15 @@
         "Difficult": "Ja – befreundete Token sind schwieriges Gelände",
         "Normal": "Nein – Bewegen durch befreundete Token kostet normal",
         "System": "Wie im System (Regeln 2014: ja, Regeln 2024: nein)"
+      },
+      "HostileDifficult": {
+        "Hint": "Häkchen gesetzt = feindliche Token dieser Größe sind beim Durchqueren schwieriges Gelände (doppelte Bewegungskosten). Ohne Häkchen kostet das Feld normal. „Feindlich“ = alle Token mit anderer Gesinnung als der bewegte Token (auch neutrale). Token, die den Weg blockieren, bleiben blockierend.",
+        "Tiny": "Feindliche Token schwierig: Winzig",
+        "Small": "Feindliche Token schwierig: Klein",
+        "Medium": "Feindliche Token schwierig: Mittelgroß",
+        "Large": "Feindliche Token schwierig: Groß",
+        "Huge": "Feindliche Token schwierig: Riesig",
+        "Gargantuan": "Feindliche Token schwierig: Gigantisch"
       }
     },
     "Warnings": {
